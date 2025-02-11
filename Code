@@ -1,0 +1,55 @@
+/**
+ * Sends a daily compliment to the specified recipient.
+ */
+function sendDailyCompliment() {
+  const recipient = "maddysinkovic@gmail.com"; // Corrected email address
+
+  // Array of compliments (add more!)
+  const compliments = [
+    "You have a contagious smile.",
+    "You bring out the best in other people.",
+    "You're a smart cookie.",
+    "You are awesome!",
+    "You make a bigger impact than you realize.",
+    "You are a ray of sunshine on a cloudy day.",
+    "You have a kind heart.",
+    "You are incredibly thoughtful.",
+    "You are so creative and inspiring.",
+    "You are a true gem."
+  ];
+
+  // Pick a random compliment
+  const randomIndex = Math.floor(Math.random() * compliments.length);
+  const compliment = compliments[randomIndex];
+
+  const subject = "A little something to brighten your day!";
+  const body = `Hi there! Just wanted to tell you: ${compliment}`;
+
+  MailApp.sendEmail({
+    to: recipient,
+    subject: subject,
+    body: body
+  });
+}
+
+/**
+ * Creates a daily trigger to send the compliment.
+ */
+function createDailyComplimentTrigger() {
+  // Delete any existing triggers for sendDailyCompliment
+  const triggers = ScriptApp.getProjectTriggers();
+  for (let i = 0; i < triggers.length; i++) {
+    if (triggers[i].getHandlerFunction() === "sendDailyCompliment") {
+      ScriptApp.deleteTrigger(triggers[i]);
+    }
+  }
+
+  // Create the new trigger
+  ScriptApp.newTrigger("sendDailyCompliment")
+    .timeBased()
+    .everyDays(1)
+    .atHour(9) // Set the time you want the compliment to be sent (e.g., 9 AM)
+    .create();
+
+  Logger.log("Daily compliment trigger created."); //Confirmation message
+}
