@@ -1,7 +1,7 @@
 # Automation
 
 # Summary
-This is an automation I made to send myself daily uplifting compliments using Gemini and Appscript 
+This is an automation I made to send myself daily uplifting compliments using Gemini and Appscript for my Innovative Technologies for Design course
 
 # About
 I created an automation using Gemini to send myself daily automated emails that contain uplifting compliments to brighten my day! I used Google Appscript to implement this code.  I was able to successfully recieve daily emails using this automation. 
